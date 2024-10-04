@@ -42,9 +42,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'role',
             'password',
+
             
             [
                 'attribute' => 'profile_image',
+                'label'=> 'Images',
                 'format' => 'html',  
                 'value' => function ($model) {
                     if (!empty($model->profile_image) && file_exists(Yii::getAlias('@webroot') . '/' . $model->profile_image)) {
