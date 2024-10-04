@@ -9,8 +9,14 @@ use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 
 $this->title = 'Login';
+$this->title = 'Blog Post';
+
+// Setting breadcrumbs
+$this->params['breadcrumbs'][] = ['label' => 'Blog', 'url' => ['blog/index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
+
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 

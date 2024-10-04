@@ -11,7 +11,16 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+        ],
+    ],
     'components' => [
+
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager', // Or PhpManager if you prefer file-based RBAC
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '5Po-oA4n6f5ndSErR5v9X2RjK5dmKTXg',
@@ -43,6 +52,8 @@ $config = [
         ],
         'db' => $db,
         
+
+        // 'enablePrettyUrl' => false, this has to bethis to use gii funcnality in yii2 php
         'urlManager' => [
             'enablePrettyUrl' => false,
             'showScriptName' => false,

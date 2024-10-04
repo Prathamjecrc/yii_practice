@@ -9,6 +9,9 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use yii\bootstrap5\BootstrapAsset;
+
+BootstrapAsset::register($this);
 
 AppAsset::register($this);
 
@@ -44,17 +47,33 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest
                 ? ['label' => 'Login', 'url' => ['/site/login']]
-                : '<li class="nav-item">'
-                    . Html::beginForm(['/site/logout'])
+                :   (
+                    '<li class="nav-item">'
+                    . Html::beginForm(['/user/index'], 'post')
+                    . Html::submitButton(
+                        'Employee',
+                        ['class' => 'nav-link btn btn-link ']
+                    )
+                    . Html::endForm()
+                    . '</li>'
+                .
+                    '<li class="nav-item">'
+                    . Html::beginForm(['/site/logout'], 'post')
                     . Html::submitButton(
                         'Logout (' . Yii::$app->user->identity->username . ')',
                         ['class' => 'nav-link btn btn-link logout']
                     )
                     . Html::endForm()
                     . '</li>'
+                ),
+              
+            Yii::$app->user->isGuest
+                ? ['label' => 'Signup', 'url' => ['/site/signup']]
+                : ''
         ]
     ]);
     NavBar::end();
+    
     ?>
 </header>
 
